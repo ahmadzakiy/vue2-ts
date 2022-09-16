@@ -17,6 +17,10 @@
       "webpack-env",
       "jest"
     ],
+    // "typeRoots": [
+    //   "pixel",
+    //   "toast"
+    // ],
     "paths": {
       "@/*": [
         "src/*"
