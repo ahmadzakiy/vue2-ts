@@ -1,12 +1,12 @@
 <template>
   <mp-flex h="100vh" align-items="center" justify-content="center">
     <mp-box text-align="center" max-width="sm">
-      <!-- <mp-avatar
+      <mp-avatar
         name="Default"
         backgroundColor="gray"
         showBorder
         borderColor="red"
-      /> -->
+      />
       <mp-icon name="mekari-brand" size="xl" />
       <mp-heading>{{ msg }}</mp-heading>
       <mp-text font-size="lg" py="5">
@@ -34,7 +34,7 @@ import {
 } from "@mekari/pixel";
 
 export default Vue.extend({
-  name: "App",
+  name: "HelloWorld",
   components: {
     MpBox,
     MpText,

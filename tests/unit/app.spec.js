@@ -1,26 +1,41 @@
 import { mount } from "@vue/test-utils";
 import App from "@/App.vue";
 
-const pixelThemeFunction = require("@mekari/pixel-theme/dist/mekari-pixel-theme.cjs.dev");
+import { theme } from "@mekari/pixel-theme";
+import { iconAssets } from "@mekari/pixel-icon";
 
 describe("App.vue", () => {
-  it("Should be name App", () => {
-    const wrapper = mount(App, {
-      stubs: {
-        PixelWrapper: {
-          template: "<div><slot></slot></div>",
-        },
-        MpToggle: {
-          template: "<div></div>",
-        },
+  let wrapper
+  
+  beforeEach(() => {
+    wrapper = mount(App, {
+      // stubs: {
+      //   PixelWrapper: {
+      //     template: "<div><slot></slot></div>",
+      //   },
+      //   MpToggle: {
+      //     template: "<div></div>",
+      //   },
+      // },
+      mocks: {
+        $pixel: {
+          theme: theme,
+          icons: {
+            ...iconAssets
+          }
+        }
       },
       provide: () => ({
-        $pixelTheme: jest.fn().mockReturnValue(pixelThemeFunction),
+        $pixelTheme: jest.fn().mockReturnValue(theme),
         $pixelColorMode: jest.fn().mockReturnValue({}),
-        $pixelIcons: jest.fn().mockReturnValue({}),
+        $pixelIcons: jest.fn().mockReturnValue({
+          ...iconAssets
+        }),
       }),
-    });
-
-    expect(wrapper.vm.$options.name).toBe("App");
   });
+  })
+  
+  it("Should be name App", () => {
+    expect(wrapper.vm.$options.name).toBe("App");
+  })
 });
